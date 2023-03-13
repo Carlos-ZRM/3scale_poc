@@ -1,6 +1,7 @@
 FROM ubi8/openjdk-8:1.14-14.1675788284 as API_BUILD
 COPY --chown=jboss:jboss . /opt/api/
 WORKDIR /opt/api/
+RUN  ls
 RUN mvn package
 
 FROM ubi8/openjdk-8:1.14-14.1675788284 as api-info
