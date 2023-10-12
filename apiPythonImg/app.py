@@ -1,3 +1,6 @@
+import os
+import psutil
+import time
 import numpy as np
 import cv2 as cv
 from flask import Flask, request, jsonify, send_file
@@ -6,6 +9,33 @@ import time
 
 
 app = Flask(__name__)
+
+def get_system_info():
+    cpu_percent = psutil.cpu_percent(interval=1)
+    memory_info = psutil.virtual_memory()
+    return {
+        "cpu_percent": cpu_percent,
+        "memory_percent": memory_info.percent,
+    }
+
+# Function to calculate uptime
+def get_uptime():
+    boot_time = psutil.boot_time()
+    uptime = time.time() - boot_time
+    return uptime
+
+# Health check route
+@app.route('/health')
+def health_check():
+    process_info = get_system_info()
+    uptime = get_uptime()
+    response_time = time.time()
+    
+    return jsonify({
+        "process_info": process_info,
+        "uptime_seconds": uptime,
+        "response_time": response_time
+    })
 
 def keypoints(img_src):
     img = cv.imread(img_src)

@@ -3,8 +3,8 @@ podman build -t img .
 
 podman run -it -p 8080:8080 -v ${PWD}/img:/app/img:Z --rm --name img img
 
-
-curl -X POST -F "imagen=@home.jpg" -k https://img-carlosxpk.apps.shrocp4upi413ovn.lab.upshift.rdu2.redhat.com --output imagen_procesada.jpg
+serviceIP=http://10.105.127.231
+curl -X POST -F "imagen=@home.jpg" $serviceIP/procesar-imagen --output imagen_procesada.jpg
 
 
 oc new-build --name apiPythonImg --binary --strategy docker
