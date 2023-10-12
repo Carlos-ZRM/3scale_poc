@@ -1,3 +1,0 @@
-{
-  "error": "[Errno 13] Permission denied: 'input_image.jpg'"
-}

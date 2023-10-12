@@ -9,8 +9,9 @@ curl -X POST -F "imagen=@home.jpg" $serviceIP/procesar-imagen --output imagen_pr
 
 oc new-build --name apiPythonImg --binary --strategy docker
 
+  oc tag 
 oc start-build img --from-dir .
 
 oc new-app image-registry.openshift-image-registry.svc:5000/carlosxpk/img
 
- oc create route edge --service=img --insecure-policy=Redirect
+oc create route edge --service=img --insecure-policy=Redirect
