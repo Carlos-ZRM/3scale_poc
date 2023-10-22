@@ -9,7 +9,8 @@ curl -X POST -F "imagen=@home.jpg" $serviceIP/procesar-imagen --output imagen_pr
 
 oc new-build --name apiPythonImg --binary --strategy docker
 
-  oc tag 
+oc tag img:latest
+
 oc start-build img --from-dir .
 
 oc new-app image-registry.openshift-image-registry.svc:5000/carlosxpk/img

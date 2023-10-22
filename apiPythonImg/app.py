@@ -10,6 +10,11 @@ import time
 
 app = Flask(__name__)
 
+@app.route('/', methods=['GET', 'POST'])
+def print_headers():
+    headers = dict(request.headers)
+    return headers
+
 def get_system_info():
     cpu_percent = psutil.cpu_percent(interval=1)
     memory_info = psutil.virtual_memory()
