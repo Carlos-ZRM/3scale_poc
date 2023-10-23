@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
 COPY . /app
 
 # Instalamos las dependencias necesarias
-RUN pip install numpy opencv-python Flask Pillow psutil SocketIO
+RUN pip install numpy opencv-python Flask Pillow psutil  flask-socketio 
 
 # Definimos el directorio de trabajo
 WORKDIR /app
