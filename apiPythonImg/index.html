@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Concurrent Connections</title>
+</head>
+<body>
+    <h1>Concurrent Connections</h1>
+    <p id="connections">Concurrent Connections: 0</p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.2.0/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('connection_update', function(data) {
+            document.getElementById('connections').innerHTML = 'Concurrent Connections: ' + data;
+        });
+    </script>
+</body>
+</html>

@@ -9,11 +9,34 @@ import time
 
 
 app = Flask(__name__)
+socketio = SocketIO(app)
+
+concurrent_connections = 0
+
 
 @app.route('/', methods=['GET', 'POST'])
 def print_headers():
     headers = dict(request.headers)
     return headers
+
+@socketio.on('connect')
+def handle_connect():
+    global concurrent_connections
+    concurrent_connections += 1
+    print(f"Client connected. Concurrent Connections: {concurrent_connections}")
+    socketio.emit('connection_update', concurrent_connections, broadcast=True)
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    global concurrent_connections
+    concurrent_connections -= 1
+    print(f"Client disconnected. Concurrent Connections: {concurrent_connections}")
+    socketio.emit('connection_update', concurrent_connections, broadcast=True)
+
+@app.route('/socket')
+def index():
+    return render_template('index.html')
+
 
 def get_system_info():
     cpu_percent = psutil.cpu_percent(interval=1)
