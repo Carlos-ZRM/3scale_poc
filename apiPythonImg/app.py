@@ -3,7 +3,8 @@ import psutil
 import time
 import numpy as np
 import cv2 as cv
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, render_template
+from flask_socketio import SocketIO
 import time
 
 
