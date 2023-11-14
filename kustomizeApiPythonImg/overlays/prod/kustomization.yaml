@@ -10,7 +10,7 @@ patches:
   - patch: |-
       - op: replace
         path: /spec/replicas
-        value: 4
+        value: 2
       - op: add
         path: /spec/revisionHistoryLimit
         value: 20
@@ -21,3 +21,6 @@ patches:
     target:
       kind: Deployment
       labelSelector: "app=apiimg"
+images:
+- name: quay.io/rh-ee-creyesma/tekton-demo
+  newTag: api-prod

@@ -23,16 +23,18 @@ spec:
           # - Each init container must complete successfully before the next one starts.
       containers:
       - name:  apiimg
-        image:  quay.io/rh-ee-creyesma/python-img-api:default
+        image:  quay.io/rh-ee-creyesma/tekton-demo:default
+        command: ["sleep"]
+        args: ["10000"]
         ports:
         - containerPort: 8080
           name:  apiimg-8080
-        securityContext:
-          allowPrivilegeEscalation: false
-          runAsNonRoot: true
-          seccompProfile:
-            type: RuntimeDefault
-          capabilities:
-            drop:
-            - ALL
+        #securityContext:
+          #allowPrivilegeEscalation: false
+          #runAsNonRoot: true
+          #seccompProfile:
+            #type: RuntimeDefault
+          #capabilities:
+          #  drop:
+          #  - ALL
       restartPolicy: Always
