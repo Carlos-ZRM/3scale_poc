@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apiimg
+spec:
+  selector:
+    app: default
+  type: ClusterIP
+  sessionAffinity: None
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800
+  ports:
+  - name: apiimg-8080
+    protocol: TCP
+    port: 8080
+    targetPort: apiimg-8080

@@ -1,0 +1,26 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+- ../../base
+#nameSuffix: -dev
+namespace: kustom-api-dev
+commonLabels:
+  oper_env: dev
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 2
+      - op: add
+        path: /spec/revisionHistoryLimit
+        value: 5
+    target:
+      kind: Deployment
+      labelSelector: "app=apiimg"
+  - path: deployment.yaml
+    target:
+      kind: Deployment
+      labelSelector: "app=apiimg"
+images:
+- name: quay.io/rh-ee-creyesma/python-img-api
+  newTag: b0665d0
