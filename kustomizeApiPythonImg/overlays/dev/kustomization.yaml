@@ -23,4 +23,4 @@ patches:
       labelSelector: "app=apiimg"
 images:
 - name: quay.io/rh-ee-creyesma/python-img-api
-  newTag: api-dev
+  newTag: python-api-img
