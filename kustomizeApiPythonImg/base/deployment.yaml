@@ -23,7 +23,7 @@ spec:
           # - Each init container must complete successfully before the next one starts.
       containers:
       - name:  apiimg
-        image:  quay.io/rh-ee-creyesma/tekton-demo:default
+        image:  quay.io/rh-ee-creyesma/python-img-api:default
         ports:
         - containerPort: 8080
           name:  apiimg-8080
