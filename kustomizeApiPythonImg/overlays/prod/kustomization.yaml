@@ -23,4 +23,4 @@ patches:
       labelSelector: "app=apiimg"
 images:
 - name: quay.io/rh-ee-creyesma/tekton-demo
-  newTag: api-prod
+  newTag: python-api-img
